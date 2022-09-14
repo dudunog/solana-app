@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react'
+
 import styles from './styles.module.scss'
 
 interface AddressFormProps {
@@ -10,7 +11,7 @@ export function AddressForm({ handler }: AddressFormProps) {
     address: ''
   })
 
-  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
     handler(values.address)
   }
@@ -19,7 +20,7 @@ export function AddressForm({ handler }: AddressFormProps) {
     setValues((values) => ({
       ...values,
       address: event.target.value,
-    }));
+    }))
   }
 
   return (
