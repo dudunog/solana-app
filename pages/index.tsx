@@ -16,8 +16,9 @@ const Home: NextPage = () => {
   const [error, setError] = useState<string>('')
 
   const addressSubmittedHandler = (address: string) => {
+    setIsLoading(true)
+
     try {
-      setIsLoading(true)
       setAddress(address)
 
       const key = new Web3.PublicKey(address)
@@ -25,8 +26,15 @@ const Home: NextPage = () => {
 
       connection.getBalance(key).then(balance => {
         setBalance(balance / Web3.LAMPORTS_PER_SOL)
-        setIsLoading(false)
       })
+
+      connection.getAccountInfo(key).then(accountInfo => {
+        if (accountInfo)
+          setIsExecutable(accountInfo.executable)
+      })
+
+      setIsLoading(false)
+      setError('')
     } catch (error: any) {
       setAddress('')
       setBalance(0)
