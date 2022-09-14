@@ -1,0 +1,33 @@
+.form {
+  width: 100%;
+
+  > form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.2rem;
+
+    .formField {
+      border: none;
+      width: 400px;
+      padding: 0.9rem;
+      outline: none;
+
+      &:focus {
+        border: none;
+      }
+    }
+
+    .formButton {
+      background-color: #f339e9;
+      border: none;
+      padding: 0 1rem;
+      transition: opacity 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+  }
+}
